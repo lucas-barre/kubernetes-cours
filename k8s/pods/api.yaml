@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: api
+  namespace: taskflow
+  labels:
+    app.kubernetes.io/name: taskflow
+    app.kubernetes.io/component: api
+    app.kubernetes.io/part-of: taskflow
+spec:
+  containers:
+    - name: api
+      image: DOCKERHUB_USER/taskflow-api:1.1.0
+      env:
+        - name: APP_ENV
+          value: k3s-lab
+        - name: DB_HOST
+          value: IP_DU_POD_DB
+        - name: DB_NAME
+          value: taskflow
+        - name: DB_USER
+          value: taskflow
+        - name: DB_PASSWORD
+          value: mot-de-passe-de-test
+      ports:
+        - containerPort: 3000

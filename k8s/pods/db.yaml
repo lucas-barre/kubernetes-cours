@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: db
+  namespace: taskflow
+  labels:
+    app.kubernetes.io/name: taskflow
+    app.kubernetes.io/component: db
+    app.kubernetes.io/part-of: taskflow
+spec:
+  containers:
+    - name: postgres
+      image: postgres:18-alpine
+      env:
+        - name: POSTGRES_DB
+          value: taskflow
+        - name: POSTGRES_USER
+          value: taskflow
+        - name: POSTGRES_PASSWORD
+          value: mot-de-passe-de-test
+      ports:
+        - containerPort: 5432
